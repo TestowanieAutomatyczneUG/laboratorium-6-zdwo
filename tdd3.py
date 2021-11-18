@@ -20,7 +20,7 @@ class Song:
                 return lyrics[vers-1]
             else:
                 raise Exception("Liczba musi byc > 0 i < 13.")
-        elif type(vers) is tuple and len(vers) == 2:
+        elif type(vers) is tuple and type(vers[0]) is int and type(vers[1]) and len(vers) == 2:
             if 0 < vers[0] < vers[1] < 13:
                 return "\n".join(lyrics[vers[0] - 1:vers[1]])
             else:
@@ -127,32 +127,26 @@ On the twelfth day of Christmas my true love gave to me: twelve Drummers Drummin
         with self.assertRaises(Exception):
             self.temp.text()
 
-    @unittest.skip("nd")
     def test_wrong_tup_type_str(self):
         with self.assertRaises(Exception):
             self.temp.text(("one", 2))
 
-    @unittest.skip("nd")
     def test_wrong_tup_type_fl(self):
         with self.assertRaises(Exception):
             self.temp.text((1, 2.2))
 
-    @unittest.skip("nd")
     def test_wrong_tup_type_dict(self):
         with self.assertRaises(Exception):
             self.temp.text(({}, 2))
 
-    @unittest.skip("nd")
     def test_wrong_tup_type_arr(self):
         with self.assertRaises(Exception):
             self.temp.text(([], 2))
 
-    @unittest.skip("nd")
     def test_wrong_tup_type_none(self):
         with self.assertRaises(Exception):
             self.temp.text((1, None))
 
-    @unittest.skip("nd")
     def test_wrong_tup_type_tup(self):
         with self.assertRaises(Exception):
             self.temp.text(((), 2))
