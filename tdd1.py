@@ -3,8 +3,9 @@ import unittest
 class Hamming:
     def distance(self, a, b):
         x = 0
-        if a != b:
-            x = 1
+        for i in range(len(a)):
+            if a[i] != b[i]:
+                x += 1
         return x
 
 hamming = Hamming()
@@ -20,11 +21,9 @@ class HammingTest(unittest.TestCase):
     def test_single_letter_different_strands(self):
         self.assertEqual(hamming.distance("G", "T"), 1)
 
-    @unittest.skip("nd")
     def test_long_identical_strands(self):
         self.assertEqual(hamming.distance("GGACTGAAATCTG", "GGACTGAAATCTG"), 0)
 
-    @unittest.skip("nd")
     def test_long_different_strands(self):
         self.assertEqual(hamming.distance("GGACGGATTCTG", "AGGACGGATTCT"), 9)
 
