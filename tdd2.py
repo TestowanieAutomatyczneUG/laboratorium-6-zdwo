@@ -4,12 +4,14 @@ def roman(x):
     o = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
     t = ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"]
     h = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"]
+    th = ["", "M", "MM", "MMM"]
 
+    thous = x // 1000
     hund = x % 1000 // 100
     tens = x % 100 // 10
     ones = x % 10
 
-    result = h[hund]+t[tens]+o[ones]
+    result = th[thous]+h[hund]+t[tens]+o[ones]
     return result
 
 class RomanNumeralsTest(unittest.TestCase):
@@ -65,10 +67,8 @@ class RomanNumeralsTest(unittest.TestCase):
     def test_900_being_1000_100_is_cm(self):
         self.assertEqual(roman(911), "CMXI")
 
-    @unittest.skip("nd")
     def test_1000_is_a_single_m(self):
         self.assertEqual(roman(1024), "MXXIV")
 
-    @unittest.skip("nd")
     def test_3000_is_three_m_s(self):
         self.assertEqual(roman(3000), "MMM")
