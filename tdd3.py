@@ -16,7 +16,10 @@ class Song:
                   "On the twelfth day of Christmas my true love gave to me: twelve Drummers Drumming, eleven Pipers Piping, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree."]
 
         if type(vers) is int:
-            return lyrics[vers-1]
+            if 0 < vers <= len(lyrics):
+                return lyrics[vers-1]
+            else:
+                raise Exception("Liczba musi byc > 0 i < 13.")
         elif type(vers) is tuple:
             return "\n".join(lyrics[vers[0]-1:vers[1]])
         elif vers == "full" or vers == "all":
@@ -63,17 +66,14 @@ On the tenth day of Christmas my true love gave to me: ten Lords-a-Leaping, nine
 On the eleventh day of Christmas my true love gave to me: eleven Pipers Piping, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.
 On the twelfth day of Christmas my true love gave to me: twelve Drummers Drumming, eleven Pipers Piping, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.""")
 
-    @unittest.skip("nd")
     def test_int_eq_zero(self):
         with self.assertRaises(Exception):
             self.temp.text(0)
 
-    @unittest.skip("nd")
     def test_int_lt_zero(self):
         with self.assertRaises(Exception):
             self.temp.text(-5)
 
-    @unittest.skip("nd")
     def test_int_gt_twelve(self):
         with self.assertRaises(Exception):
             self.temp.text(13)
