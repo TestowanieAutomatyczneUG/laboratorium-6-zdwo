@@ -1,19 +1,18 @@
 import unittest
 
 def roman(x):
-    return ""
+    if x < 4:
+        result = "I"*x
+    return result
 
 class RomanNumeralsTest(unittest.TestCase):
 
-    @unittest.skip("nd")
     def test_1_is_a_single_i(self):
         self.assertEqual(roman(1), "I")
 
-    @unittest.skip("nd")
     def test_2_is_two_i_s(self):
         self.assertEqual(roman(2), "II")
 
-    @unittest.skip("nd")
     def test_3_is_three_i_s(self):
         self.assertEqual(roman(3), "III")
 
