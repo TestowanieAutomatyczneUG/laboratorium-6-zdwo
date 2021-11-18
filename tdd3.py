@@ -14,7 +14,12 @@ class Song:
                   "On the tenth day of Christmas my true love gave to me: ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.",
                   "On the eleventh day of Christmas my true love gave to me: eleven Pipers Piping, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.",
                   "On the twelfth day of Christmas my true love gave to me: twelve Drummers Drumming, eleven Pipers Piping, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree."]
-        return lyrics[vers-1]
+
+        if type(vers) is int:
+            return lyrics[vers-1]
+        elif type(vers) is tuple:
+            return "\n".join(lyrics[vers[0]-1:vers[1]])
+
 
 class SongTest(unittest.TestCase):
     def setUp(self):
@@ -23,7 +28,6 @@ class SongTest(unittest.TestCase):
     def test_single_vers(self):
         self.assertEqual(self.temp.text(1), "On the first day of Christmas my true love gave to me: a Partridge in a Pear Tree.")
 
-    @unittest.skip("nd")
     def test_tuple_verses(self):
         self.assertEqual(self.temp.text((1,3)), """On the first day of Christmas my true love gave to me: a Partridge in a Pear Tree.
 On the second day of Christmas my true love gave to me: two Turtle Doves, and a Partridge in a Pear Tree.
