@@ -9,7 +9,6 @@ hamming = Hamming()
 
 class HammingTest(unittest.TestCase):
 
-    @unittest.skip("nd")
     def test_empty_strands(self):
         self.assertEqual(hamming.distance("", ""), 0)
 
