@@ -19,6 +19,8 @@ class Song:
             return lyrics[vers-1]
         elif type(vers) is tuple:
             return "\n".join(lyrics[vers[0]-1:vers[1]])
+        elif vers == "full" or vers == "all":
+            return "\n".join(lyrics)
 
 
 class SongTest(unittest.TestCase):
@@ -33,7 +35,6 @@ class SongTest(unittest.TestCase):
 On the second day of Christmas my true love gave to me: two Turtle Doves, and a Partridge in a Pear Tree.
 On the third day of Christmas my true love gave to me: three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.""")
 
-    @unittest.skip("nd")
     def test_full_song(self):
         self.assertEqual(self.temp.text("full"), """On the first day of Christmas my true love gave to me: a Partridge in a Pear Tree.
 On the second day of Christmas my true love gave to me: two Turtle Doves, and a Partridge in a Pear Tree.
@@ -48,7 +49,6 @@ On the tenth day of Christmas my true love gave to me: ten Lords-a-Leaping, nine
 On the eleventh day of Christmas my true love gave to me: eleven Pipers Piping, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.
 On the twelfth day of Christmas my true love gave to me: twelve Drummers Drumming, eleven Pipers Piping, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.""")
 
-    @unittest.skip("nd")
     def test_all_song(self):
         self.assertEqual(self.temp.text("all"), """On the first day of Christmas my true love gave to me: a Partridge in a Pear Tree.
 On the second day of Christmas my true love gave to me: two Turtle Doves, and a Partridge in a Pear Tree.
