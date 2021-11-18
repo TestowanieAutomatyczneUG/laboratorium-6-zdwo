@@ -21,10 +21,10 @@ class Song:
             else:
                 raise Exception("Liczba musi byc > 0 i < 13.")
         elif type(vers) is tuple:
-            if 0 < vers[0]:
+            if 0 < vers[0] < vers[1] < 13 and len(vers) == 2:
                 return "\n".join(lyrics[vers[0] - 1:vers[1]])
             else:
-                raise Exception("Liczby musza byc > 0.")
+                raise Exception("Liczby musza byc > 0. Pierwsza musi byc mniejsza od drugiej.")
         elif vers == "full" or vers == "all":
             return "\n".join(lyrics)
 
@@ -89,17 +89,14 @@ On the twelfth day of Christmas my true love gave to me: twelve Drummers Drummin
         with self.assertRaises(Exception):
             self.temp.text((0,5))
 
-    @unittest.skip("nd")
     def test_tup_empty(self):
         with self.assertRaises(Exception):
             self.temp.text(())
 
-    @unittest.skip("nd")
     def test_tup_wrong_order(self):
         with self.assertRaises(Exception):
             self.temp.text((11,2))
 
-    @unittest.skip("nd")
     def test_tup_gt_twelve(self):
         with self.assertRaises(Exception):
             self.temp.text((11,13))
