@@ -3,10 +3,13 @@ import unittest
 class Hamming:
     def distance(self, a, b):
         x = 0
-        for i in range(len(a)):
-            if a[i] != b[i]:
-                x += 1
-        return x
+        if len(a) != len(b):
+            raise ValueError("Error")
+        else:
+            for i in range(len(a)):
+                if a[i] != b[i]:
+                    x += 1
+            return x
 
 hamming = Hamming()
 
@@ -27,22 +30,18 @@ class HammingTest(unittest.TestCase):
     def test_long_different_strands(self):
         self.assertEqual(hamming.distance("GGACGGATTCTG", "AGGACGGATTCT"), 9)
 
-    @unittest.skip("nd")
     def test_disallow_first_strand_longer(self):
         with self.assertRaisesWithMessage(ValueError):
             hamming.distance("AATG", "AAA")
 
-    @unittest.skip("nd")
     def test_disallow_second_strand_longer(self):
         with self.assertRaisesWithMessage(ValueError):
             hamming.distance("ATA", "AGTG")
 
-    @unittest.skip("nd")
     def test_disallow_left_empty_strand(self):
         with self.assertRaisesWithMessage(ValueError):
             hamming.distance("", "G")
 
-    @unittest.skip("nd")
     def test_disallow_right_empty_strand(self):
         with self.assertRaisesWithMessage(ValueError):
             hamming.distance("G", "")
