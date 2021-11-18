@@ -3,6 +3,8 @@ import unittest
 class Hamming:
     def distance(self, a, b):
         x = 0
+        if a != b:
+            x = 1
         return x
 
 hamming = Hamming()
@@ -12,11 +14,9 @@ class HammingTest(unittest.TestCase):
     def test_empty_strands(self):
         self.assertEqual(hamming.distance("", ""), 0)
 
-    @unittest.skip("nd")
     def test_single_letter_identical_strands(self):
         self.assertEqual(hamming.distance("A", "A"), 0)
 
-    @unittest.skip("nd")
     def test_single_letter_different_strands(self):
         self.assertEqual(hamming.distance("G", "T"), 1)
 
